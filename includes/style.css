@@ -1,0 +1,50 @@
+html {
+	height: 100%;
+}
+
+body {
+	margin: 0;
+	height: 100%;
+	background: #d7dce0;
+}.clear{
+clear:both;
+} 
+.main{
+	margin: auto;
+	width: 85%;
+	background: #d7dce0;
+	
+}
+.eclosing{
+	width: 100%;
+	height: 100%;
+	display: table;
+}
+.top {
+
+background: #cce0ff;
+height: 100px;
+}
+.left {
+	display: table-cell;
+	float:left;
+	vertical-align: top;
+	height: 100%;
+	background: #77a9f7;
+	
+	min-height: 100%;
+	width:40%;
+}
+.right{
+	display: table-cell;
+	vertical-align: top;
+	width: 60%;
+	background: #e0f8ff;
+	
+}
+.footer{
+	position: fixed;
+  	left: 0;
+ 	bottom: 0;
+  	width: 100%;
+}
