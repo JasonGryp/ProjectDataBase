@@ -261,6 +261,6 @@ else if($type=="land"){
 				}
 
 	}
-  	
+  	$_SESSION['posted']=1;
 	header("Location: ../index.php");
 ?>

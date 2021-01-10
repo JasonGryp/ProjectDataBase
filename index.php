@@ -3,7 +3,7 @@
 include_once'includes/dbh.inc.php';
 // Initialize the session
 session_start();
-$_SESSION['posted']=0;
+
 // Check if the user is logged in, if not then redirect him to login page
 if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     header("location: login.php");
@@ -484,7 +484,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 	</div>
 	<div class="right">
 			<?php 
-				
+				if($_SESSION['posted']=='1'){
 					foreach ($_SESSION['data'] as $row) {
 						$id=$row['idAkinito'];
 						$sql="SELECT Onoma,email,tilefono FROM user join kataxorei on user.idUser=kataxorei.idUser where idAkinito='$id';";
@@ -506,6 +506,9 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 						}
 						echo "<div>"."<p>".$row['Ypokatigoria']." ".$row['size']."sq.m. for ".$Purpose."</p>".'<label>'.$row['Area'].'</label><br><label>'.$row['price'].$priceformat.'</label><br><label><br></label>Name: '.$onomaaggelias.' <br><label>E-mail: '.$emailaggelias.'</label>'.' <br><label>Telephone: '.$tilefonoaggelias.'</label>'.'<hr>'."</div>";
 				}
+				$_SESSION['posted']='0';
+				}
+				
 				
 			?>
 		</table>
