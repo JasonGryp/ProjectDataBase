@@ -1,5 +1,5 @@
 # ProjectDataBase
-This is a repository to the Project of team 46 in the class Data bases of UOP year 2020-2021
+This is a repository to the Project of team 43 in the class Data bases of UOP year 2020-2021
 
 ΟΔΗΓΙΕΣ ΕΓΚΑΤΑΣΤΑΣΗΣ
 Η εφαρμογή έχει σχεδιαστεί με την χρήση του προγράμματος XAMPP και για την λειτουργεία της πρέπει τα αρχεία του repository να μεταφερθούν στον φάκελο htdocs του προγράμματος.
