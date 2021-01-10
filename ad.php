@@ -1,9 +1,8 @@
 
 <?php
-include_once'includes/dbh.inc.php';
 // Initialize the session
 session_start();
-$_SESSION['posted']=0;
+ 
 // Check if the user is logged in, if not then redirect him to login page
 if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     header("location: login.php");
@@ -11,14 +10,12 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 
 }
 ?>
-
-
 <!DOCTYPE html>
 <html>
 <head>
 	<link rel="stylesheet" href="includes/style.css">
 	<meta charset="utf-8"/>
-	<title>Project Team 43</title>
+	<title>Project Team 46</title>
 	<script type="text/javascript">
 
 	function populate(s1,s2,d1){
@@ -28,266 +25,104 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 		s2.innerHTML = "";
 		extra.innerHTML="";
 		if(s1.value == "house"){
+
 			var newLabel = document.createElement("label");
 			newLabel.innerHTML="Bedrooms:";
 			extra.appendChild(newLabel);
 			var br = document.createElement("br");
 			extra.appendChild(br);
-			var newLabel = document.createElement("label");
-			newLabel.innerHTML="From:";
-			extra.appendChild(newLabel);
-			var minrooms=document.createElement("select");
-			var optionArray=["1","2","3","4","5","6","7","8","9","10"];
-			minrooms.name="minrooms";
-			for(var option in optionArray)
-			{
-				var newOption = document.createElement("option");
-				newOption.value= optionArray[option]
-				newOption.innerHTML = optionArray[option]
-				minrooms.options.add(newOption);
-			}
-			extra.appendChild(minrooms);
-			var newLabel = document.createElement("label");
-			newLabel.innerHTML="to:";
-			extra.appendChild(newLabel);
-
-			var maxrooms=document.createElement("select");
-			var optionArray=["1","2","3","4","5","6","7","8","9","10"];
-			maxrooms.name="maxrooms";
-			for(var option in optionArray)
-			{
-				var newOption = document.createElement("option");
-				newOption.value= optionArray[option]
-				newOption.innerHTML = optionArray[option]
-				maxrooms.options.add(newOption);
-			}
-			extra.appendChild(maxrooms);
+			var year=document.createElement("input");
+			year.type="text";
+			year.name="rooms";
+			extra.appendChild(year);
 			var br = document.createElement("br");
 			extra.appendChild(br);
 
 			var br = document.createElement("hr");
 			extra.appendChild(br);
-
-
-			//floor
 			var newLabel = document.createElement("label");
 			newLabel.innerHTML="Floor:";
 			extra.appendChild(newLabel);
 			var br = document.createElement("br");
 			extra.appendChild(br);
-			var newLabel = document.createElement("label");
-			newLabel.innerHTML="From:";
-			extra.appendChild(newLabel);
-			var minfloor=document.createElement("select");
-			var optionArray=["-1","0","1","2","3","4","5","6","7","8","9","10"];
-			minfloor.name="minfloor";
-			for(var option in optionArray)
-			{
-				var newOption = document.createElement("option");
-				newOption.value= optionArray[option]
-				newOption.innerHTML = optionArray[option]
-				minfloor.options.add(newOption);
-			}
-			extra.appendChild(minfloor);
-			var newLabel = document.createElement("label");
-			newLabel.innerHTML="to:";
-			extra.appendChild(newLabel);
-
-			var maxfloor=document.createElement("select");
-			var optionArray=["-1","0","1","2","3","4","5","6","7","8","9","10"];
-			maxfloor.name="maxfloor";
-			for(var option in optionArray)
-			{
-				var newOption = document.createElement("option");
-				newOption.value= optionArray[option]
-				newOption.innerHTML = optionArray[option]
-				maxfloor.options.add(newOption);
-			}
-			extra.appendChild(maxfloor);
+			var year=document.createElement("input");
+			year.type="text";
+			year.name="floor";
+			extra.appendChild(year);
 			var br = document.createElement("br");
 			extra.appendChild(br);
 
 			var br = document.createElement("hr");
 			extra.appendChild(br);
 
-			// year built
 			var newLabel = document.createElement("label");
 			newLabel.innerHTML="Construction Year:";
 			extra.appendChild(newLabel);
 			var br = document.createElement("br");
 			extra.appendChild(br);
-			var newLabel = document.createElement("label");
-			newLabel.innerHTML="From:";
-			extra.appendChild(newLabel);
-			var minyear=document.createElement("select");
-			var optionArray=["1950","1960","1970","1980","1990","1995","2000","2005","2010","2011","2012","2013","2014","2015","2016","2017","2018","2019","2020","2021"];
-			minyear.name="minyear";
-			for(var option in optionArray)
-			{
-				var newOption = document.createElement("option");
-				newOption.value= optionArray[option]
-				newOption.innerHTML = optionArray[option]
-				minyear.options.add(newOption);
-			}
-			extra.appendChild(minyear);
-			var newLabel = document.createElement("label");
-			newLabel.innerHTML="to:";
-			extra.appendChild(newLabel);
-
-			var maxyear=document.createElement("select");
-			var optionArray=["1950","1960","1970","1980","1990","1995","2000","2005","2010","2011","2012","2013","2014","2015","2016","2017","2018","2019","2020","2021"];
-			maxyear.name="maxyear";
-			for(var option in optionArray)
-			{
-				var newOption = document.createElement("option");
-				newOption.value= optionArray[option]
-				newOption.innerHTML = optionArray[option]
-				maxyear.options.add(newOption);
-			}
-			extra.appendChild(maxyear);
+			var year=document.createElement("input");
+			year.type="text";
+			year.name="year";
+			extra.appendChild(year);
 			var br = document.createElement("br");
 			extra.appendChild(br);
 
 			var br = document.createElement("hr");
 			extra.appendChild(br);
+			
 
 			var optionArray = ["Everything|All subcategories","Apartment|Apartment","Studio|Studio","Maisonette|Maisonette","House|House","Villa|Villa","Loft|Loft","Bungalow|Bungalow","Building|Building"];
-			var extraArray=["Furnished|Furniced","Parking|Parking","Storage Space|Storage Space","Veranda|Veranda","Safety Door|Safety Door","Air Conditioning|Air Conditioning","Alarm System|Alarm System","Fireplace|Fireplace","Elevator|Elevator","View|View","Garden|Garden","Pool|Pool","Penthouse|Penthouse","Solar Water Heater|Solar Water Heater"];
-
-
-
+			var extraArray=["Furnished|Furnished","Parking|Parking","Storage_Space|Storage_Space","Veranda|Veranda","Safety_Door|Safety_Door","Air_Conditioning|Air_Conditioning","Alarm_System|Alarm_System","Fireplace|Fireplace","Elevator|Elevator","View|View","Garden|Garden","Pool|Pool","Penthouse|Penthouse","Solar_Water_Heater|Solar_Water_Heater"];
 		} else if(s1.value == "working_place"){
+
 			var newLabel = document.createElement("label");
 			newLabel.innerHTML="Rooms:";
 			extra.appendChild(newLabel);
 			var br = document.createElement("br");
 			extra.appendChild(br);
-			var newLabel = document.createElement("label");
-			newLabel.innerHTML="From:";
-			extra.appendChild(newLabel);
-			var minrooms=document.createElement("select");
-			var optionArray=["1","2","3","4","5","6","7","8","9","10"];
-			minrooms.name="minrooms";
-			for(var option in optionArray)
-			{
-				var newOption = document.createElement("option");
-				newOption.value= optionArray[option]
-				newOption.innerHTML = optionArray[option]
-				minrooms.options.add(newOption);
-			}
-			extra.appendChild(minrooms);
-			var newLabel = document.createElement("label");
-			newLabel.innerHTML="to:";
-			extra.appendChild(newLabel);
-
-			var maxrooms=document.createElement("select");
-			var optionArray=["1","2","3","4","5","6","7","8","9","10"];
-			maxrooms.name="maxrooms";
-			for(var option in optionArray)
-			{
-				var newOption = document.createElement("option");
-				newOption.value= optionArray[option]
-				newOption.innerHTML = optionArray[option]
-				maxrooms.options.add(newOption);
-			}
-			extra.appendChild(maxrooms);
+			var year=document.createElement("input");
+			year.type="text";
+			year.name="rooms";
+			extra.appendChild(year);
 			var br = document.createElement("br");
 			extra.appendChild(br);
 
 			var br = document.createElement("hr");
 			extra.appendChild(br);
-
-			//floor
 			var newLabel = document.createElement("label");
 			newLabel.innerHTML="Floor:";
 			extra.appendChild(newLabel);
 			var br = document.createElement("br");
 			extra.appendChild(br);
-			var newLabel = document.createElement("label");
-			newLabel.innerHTML="From:";
-			extra.appendChild(newLabel);
-			var minfloor=document.createElement("select");
-			var optionArray=["-1","0","1","2","3","4","5","6","7","8","9","10"];
-			minfloor.name="minfloor";
-			for(var option in optionArray)
-			{
-				var newOption = document.createElement("option");
-				newOption.value= optionArray[option]
-				newOption.innerHTML = optionArray[option]
-				minfloor.options.add(newOption);
-			}
-			extra.appendChild(minfloor);
-			var newLabel = document.createElement("label");
-			newLabel.innerHTML="to:";
-			extra.appendChild(newLabel);
-
-			var maxfloor=document.createElement("select");
-			var optionArray=["-1","0","1","2","3","4","5","6","7","8","9","10"];
-			maxfloor.name="maxfloor";
-			for(var option in optionArray)
-			{
-				var newOption = document.createElement("option");
-				newOption.value= optionArray[option]
-				newOption.innerHTML = optionArray[option]
-				maxfloor.options.add(newOption);
-			}
-			extra.appendChild(maxfloor);
+			var year=document.createElement("input");
+			year.type="text";
+			year.name="floor";
+			extra.appendChild(year);
 			var br = document.createElement("br");
 			extra.appendChild(br);
 
 			var br = document.createElement("hr");
 			extra.appendChild(br);
 
-			// year built
 			var newLabel = document.createElement("label");
 			newLabel.innerHTML="Construction Year:";
 			extra.appendChild(newLabel);
 			var br = document.createElement("br");
 			extra.appendChild(br);
-			var newLabel = document.createElement("label");
-			newLabel.innerHTML="From:";
-			extra.appendChild(newLabel);
-			var minyear=document.createElement("select");
-			var optionArray=["1950","1960","1970","1980","1990","1995","2000","2005","2010","2011","2012","2013","2014","2015","2016","2017","2018","2019","2020","2021"];
-			minyear.name="minyear";
-			for(var option in optionArray)
-			{
-				var newOption = document.createElement("option");
-				newOption.value= optionArray[option]
-				newOption.innerHTML = optionArray[option]
-				minyear.options.add(newOption);
-			}
-			extra.appendChild(minyear);
-			var newLabel = document.createElement("label");
-			newLabel.innerHTML="to:";
-			extra.appendChild(newLabel);
-
-			var maxyear=document.createElement("select");
-			var optionArray=["1950","1960","1970","1980","1990","1995","2000","2005","2010","2011","2012","2013","2014","2015","2016","2017","2018","2019","2020","2021"];
-			maxyear.name="maxyear";
-			for(var option in optionArray)
-			{
-				var newOption = document.createElement("option");
-				newOption.value= optionArray[option]
-				newOption.innerHTML = optionArray[option]
-				maxyear.options.add(newOption);
-			}
-			extra.appendChild(maxyear);
+			var year=document.createElement("input");
+			year.type="text";
+			year.name="year";
+			extra.appendChild(year);
 			var br = document.createElement("br");
 			extra.appendChild(br);
 
 			var br = document.createElement("hr");
 			extra.appendChild(br);
-
-
-			//else
-
-
 			var optionArray = ["Everything|All subcategories","Office|Office","Shop|Shop","Werehouse|Werehouse","Industrial Space|Industrial Space","Hotel|Hotel","Conference Room|Conference Room"];
-			var extraArray=["Parking|Parking","Storage Space|Storage Space","Safety Door|Safety Door","Air Conditioning|Air Conditioning","Alarm System|Alarm System","Elevator|Elevator","Penthouse|Penthouse","Corner Building|Corner Building","Loading Dock|Loading Dock"];
+			var extraArray=["Parking|Parking","Storage_Space|Storage_Space","Safety_Door|Safety_Door","Air_Conditioning|Air_Conditioning","Alarm_System|Alarm_System","Elevator|Elevator","Penthouse|Penthouse","Corner_Building|Corner_Building","Loading_Dock|Loading_Dock"];
 		} else if(s1.value == "land"){
 			var optionArray = ["Everything|All subcategories","Land|Land","Farmland|Farmland","Island|Island"];
-			var extraArray=["Corner Building|Corner Building","Residential Zone|Residential Zone","Facade|Facade","Within the Building Plan|Within the Building Plan"];
+			var extraArray=["Corner_Building|Corner_Building","Residential_Zone|Residential_Zone","Facade|Facade","Within_the Building_Plan|Within_the_Building_Plan"];
 		}
 		for(var option in optionArray){
 			var pair = optionArray[option].split("|");
@@ -304,7 +139,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 			newLabel.innerHTML= pair2[0];
 			newcheckbox.type="checkbox"
 			newcheckbox.id = pair2[0];
-			newcheckbox.name = pair2[1];
+			newcheckbox.name = pair2[0];
 			newcheckbox.value = pair2[0];
 			extra.appendChild(newLabel);
 			extra.appendChild(newcheckbox);
@@ -320,11 +155,11 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 		select2.innerHTML="";
 		if(radio.checked)
 		{
-			var priceArray=["0|150","150|300","300|500","500|700","700|1000","1000|1500"];
+			var priceArray=["0|150","150|300","300|500","500|Unlimited"];
 		}
 		else
 		{
-			var priceArray=["0|10000","10000|20000","20000|50000","50000|100000","100000|150000"];
+			var priceArray=["0|10000","10000|20000","20000|50000","50000|Unlimited"];
 		}
 		for(var stringArray in priceArray)
 		{
@@ -353,15 +188,15 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 	<a href="logout.php" >Sign Out of Your Account</a>
 	<br><?php echo htmlspecialchars($_SESSION["onoma"]);
 	?><br>
-	<a href="ad.php" >List your advertisement </a>
+	<a href="index.php" >Return to searching </a>
 	</div>
 	<div class="enclosing">
 	<!-- Searching form-->
-	<div id="searchdiv" class="left">
-		<form action="includes/search.inc.php" method="POST">
+	
+		<form action="includes/ad.inc.php" method="POST">
 			<!-- Area -->
 			<label>Area</label>
-			<select name="poleis" id="poleis">
+			<select name="Area" id="poleis">
 			</select>
 			<script type="text/javascript">
 		var Areas=[
@@ -378,10 +213,10 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 		} </script><br>
 
 			<!-- Purpose-->
-			<input type="radio" id="Sale" name="drone" value="Sale"  onclick="radioselect('Rent','minPrice','maxPrice')">
+			<input type="radio" id="Sale" name="drone" value="Sale" >
   				<label for="Sale">Sale</label>
 
-  			<input type="radio" id="Rent" name="drone" value="Rent" onclick="radioselect('Rent','minPrice','maxPrice')" >
+  			<input type="radio" id="Rent" name="drone" value="Rent"  >
   				<label for="Rent">Rent</label>
   			<br>
 
@@ -401,49 +236,14 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 			<br>
 			<hr>
 			<!-- Price-->
-			<label >Price</label>
-			<select name="minPrice" id="minPrice"></select>
-			<select name="maxPrice" id="maxPrice"></select>
+			<label >Price:</label>	
+			<input type="text" name="price">
+			<label >€</label>	
 			<br>
 			<!-- Size-->
 			<label >Size</label>
-			<select name="minSize" id="minSize">
-				<option value="0" selected>0</option>
-				<option value="50">50</option>
-				<option value="100">100</option>
-				<option value="200">200</option>
-				<option value="300">300</option>
-				<option value="400">400</option>
-				<option value="500">500</option>
-				<option value="600">600</option>
-				<option value="700">700</option>
-				<option value="800">800</option>
-				<option value="900">900</option>
-				<option value="1000">1000</option>
-				<option value="2000">2000</option>
-				<option value="5000">5000</option>
-				<option value="10000">10000</option>
-				
-
-			</select>
-			<select name="maxSize" id="maxSize">
-				<option value="50" selected>50</option>
-				<option value="100">100</option>
-				<option value="200">200</option>
-				<option value="300">300</option>
-				<option value="400">400</option>
-				<option value="500">500</option>
-				<option value="600">600</option>
-				<option value="700">700</option>
-				<option value="800">800</option>
-				<option value="900">900</option>
-				<option value="1000">1000</option>
-				<option value="2000">2000</option>
-				<option value="5000">5000</option>
-				<option value="10000">10000</option>
-
-
-			</select>
+			<input type="text" name="size">
+			<label >Sq.m.</label>
 			<br>
 			<hr>
 			<!-- extra -->
@@ -452,64 +252,11 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 			</div>
 			<br>
 			<hr>
-			<!-- refresh -->
-			<label>Last updated</label>
-			<select name="refresh" id="refresh">
-				<option value="0" selected>Irrelevant</option>
-				<option value="1" >Last 24 hours</option>
-				<option value="3" >Last 3 days</option>
-				<option value="7" >Last 7 days</option>
-				<option value="30" >Last month</option>
-				<option value="90" >Last 3 months</option>
-				<option value="365" >Last year</option>
-
-			</select>
-			<br><hr>
-			<!-- age -->
-			<label>Age</label>
-			<select id="age" name="age">
-				<option value="0" selected>Irrelevant</option>
-				<option value="1" >Last 24 hours</option>
-				<option value="3" >Last 3 days</option>
-				<option value="7" >Last 7 days</option>
-				<option value="30" >Last month</option>
-				<option value="90" >Last 3 months</option>
-				<option value="365" >Last year</option>
-			</select>
-			<br><hr>
-			<button type="submit" name="search" value="posted">Search</button>
+			 
+			<button type="submit" name="search">List</button>
 			<br><hr>
 		</form>
 
-	</div>
-	<div class="right">
-			<?php 
-				
-					foreach ($_SESSION['data'] as $row) {
-						$id=$row['idAkinito'];
-						$sql="SELECT Onoma,email,tilefono FROM user join kataxorei on user.idUser=kataxorei.idUser where idAkinito='$id';";
-						$result=mysqli_query($conn,$sql);
-						$result=mysqli_fetch_assoc($result);
-						$onomaaggelias=$result['Onoma'];
-						$emailaggelias=$result['email'];
-						$tilefonoaggelias=$result['tilefono'];
-						//echo $onomaaggelias.$emailaggelias.$tilefonoaggelias;
-						if($row['Sale_Rent']==1)
-						{
-								$Purpose="Sale.";
-								$priceformat="$";
-						}
-						else
-						{
-							$Purpose='Rent.';
-							$priceformat="$/month";
-						}
-						echo "<div>"."<p>".$row['Ypokatigoria']." ".$row['size']."sq.m. for ".$Purpose."</p>".'<label>'.$row['Area'].'</label><br><label>'.$row['price'].$priceformat.'</label><br><label><br></label>Name: '.$onomaaggelias.' <br><label>E-mail: '.$emailaggelias.'</label>'.' <br><label>Telephone: '.$tilefonoaggelias.'</label>'.'<hr>'."</div>";
-				}
-				
-			?>
-		</table>
-	</div>
 	
 		
 	</div>
@@ -518,6 +265,3 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 </div>
 </body>
 </html>
-
-
-

@@ -49,7 +49,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 	{
 		$rentsale='0';
 	}
-	echo $maxPrice." ".$rentsale."<br>";
+	
 
 	if($type=="house"){
 		
@@ -126,7 +126,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 		if($subtype=='Everything')
 		{
 			$sql="SELECT * FROM akinito join home on idAkinito=idHome
-			#WHERE price >= $minPrice  and price <= $maxPrice and size>=$minSize and size<=$maxSize and Area='$area' and Sale_Rent=$rentsale and Ypnodomatia>=$minrooms and Ypnodomatia<=$maxrooms and Orofos>=$minfloor and Orofos<=$maxfloor and Etos_kataskeuis>=$minyear and Etos_kataskeuis <= $maxyear and Epipla>=$Furnished and Parking>=$Parking and Apothiki>=$Storage_Space and Verada>=$Veranda and Porta_asfalias >= $Safety_Door and Klimatismos>=$Air_Conditioning and Sinagermos>=$Alarm_System and Tzaki>=$Fireplace and Elevator>=$Elevator and View>=$View and Garden>=$Garden and Pool>=$Pool and Retire>=$Penthouse and Sun_Heater >= $Solar_Water_Heater and DATEDIFF('$age',register_date)>='0' and  DATEDIFF('$refresh',register_date)>='0';";
+			WHERE price >= $minPrice  and price <= $maxPrice and size>=$minSize and size<=$maxSize and Area='$area' and Sale_Rent=$rentsale and Ypnodomatia>=$minrooms and Ypnodomatia<=$maxrooms and Orofos>=$minfloor and Orofos<=$maxfloor and Etos_kataskeuis>=$minyear and Etos_kataskeuis <= $maxyear and Epipla>=$Furnished and Parking>=$Parking and Apothiki>=$Storage_Space and Verada>=$Veranda and Porta_asfalias >= $Safety_Door and Klimatismos>=$Air_Conditioning and Sinagermos>=$Alarm_System and Tzaki>=$Fireplace and Elevator>=$Elevator and View>=$View and Garden>=$Garden and Pool>=$Pool and Retire>=$Penthouse and Sun_Heater >= $Solar_Water_Heater and DATEDIFF('$age',register_date)>='0' and  DATEDIFF('$refresh',register_date)>='0';";
 			$data=mysqli_query($conn,$sql);
 
 		}
@@ -190,7 +190,7 @@ else if($type=="working_place"){
 		if($subtype=='Everything')
 		{
 				$sql="SELECT * FROM akinito join office on idAkinito=idOffice
-			WHERE price >= $minPrice and price <= $maxPrice and DATEDIFF('$age',register_date)>='0' and  DATEDIFF('$refresh',register_date)>='0' and size>=$minSize and size<=$maxSize and Area='$area' and Sale_Rent='$rentsale' and Domatia>=$minrooms and Domatia<=$maxrooms and Orofos>=$minfloor and Orofos<=$maxfloor and Etos_kataskeuis>=$minyear and Etos_kataskeuis >= $maxyear and Parking>=$Parking and Apothiki>=$Storage_Space and Porta_asfalias >= $Safety_Door and Klimatismos>=$Air_Conditioning and Sinagermos>=$Alarm_System and Elevator>=$Elevator and Retire>=$Penthouse and Corner>=$Corner_Building and Ramp_Load>=$Loading_Dock;
+			WHERE price >= $minPrice and price <= $maxPrice and DATEDIFF('$age',register_date)>='0' and  DATEDIFF('$refresh',register_date)>='0' and size>=$minSize and size<=$maxSize and Area='$area' and Sale_Rent='$rentsale' and Domatia>=$minrooms and Domatia<=$maxrooms and Orofos>=$minfloor and Orofos<=$maxfloor and Etos_kataskeuis>=$minyear and Etos_kataskeuis <= $maxyear and Parking>=$Parking and Apothiki>=$Storage_Space and Porta_asfalias >= $Safety_Door and Klimatismos>=$Air_Conditioning and Sinagermos>=$Alarm_System and Elevator>=$Elevator and Retire>=$Penthouse and Corner>=$Corner_Building and Ramp_Load>=$Loading_Dock;
 			";
 			$data=mysqli_query($conn,$sql);
 
@@ -198,7 +198,7 @@ else if($type=="working_place"){
 		else 
 		{
 			$sql="SELECT * FROM akinito join office on idAkinito=idOffice
-			WHERE price >= $minPrice and price <= $maxPrice and DATEDIFF('$age',register_date)>='0' and  DATEDIFF('$refresh',register_date)>='0' and size>=$minSize and size<=$maxSize and Area='$area' and Sale_Rent='$rentsale' and Ypokatigoria='$subtype' and Domatia>=$minrooms and Domatia<=$maxrooms and Orofos>=$minfloor and Orofos<=$maxfloor and Etos_kataskeuis>=$minyear and Etos_kataskeuis >= $maxyear and Parking>=$Parking and Apothiki>=$Storage_Space and Porta_asfalias >= $Safety_Door and Klimatismos>=$Air_Conditioning and Sinagermos>=$Alarm_System and Elevator>=$Elevator and Retire>=$Penthouse and Corner>=$Corner_Building and Ramp_Load>=$Loading_Dock;
+			WHERE price >= $minPrice and price <= $maxPrice and DATEDIFF('$age',register_date)>='0' and  DATEDIFF('$refresh',register_date)>='0' and size>=$minSize and size<=$maxSize and Area='$area' and Sale_Rent='$rentsale' and Ypokatigoria='$subtype' and Domatia>=$minrooms and Domatia<=$maxrooms and Orofos>=$minfloor and Orofos<=$maxfloor and Etos_kataskeuis>=$minyear and Etos_kataskeuis <= $maxyear and Parking>=$Parking and Apothiki>=$Storage_Space and Porta_asfalias >= $Safety_Door and Klimatismos>=$Air_Conditioning and Sinagermos>=$Alarm_System and Elevator>=$Elevator and Retire>=$Penthouse and Corner>=$Corner_Building and Ramp_Load>=$Loading_Dock;
 			";
 			$data=mysqli_query($conn,$sql);	
 		}
